@@ -8,8 +8,9 @@ WORKDIR /app
 COPY requirements.txt .
 
 # 4. Install Python dependencies (add curl if you use MLflow local tracking URI)
+# 4. Install Python dependencies (add curl if you use MLflow local tracking URI)
 RUN pip install --upgrade pip \
-    && pip install -r requirements.txt \
+    && pip install --default-timeout=1000 -r requirements.txt \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # 5. Copy the entire project into the image
